@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../')
 import time
-from DFRobot_ADS1115 import ADS1115
+from ADC_ADS1115 import ADS1115
 ADS1115_REG_CONFIG_PGA_6_144V        = 0x00 # 6.144V range = Gain 2/3
 ADS1115_REG_CONFIG_PGA_4_096V        = 0x02 # 4.096V range = Gain 1
 ADS1115_REG_CONFIG_PGA_2_048V        = 0x04 # 2.048V range = Gain 2 (default)
@@ -33,11 +33,7 @@ def read_adc():
     adc2 = ads1115.readVoltage(2) # voltage in mV
     time.sleep(0.2)
     adc3 = ads1115.readVoltage(3) # voltage in mV
-    #print("A0:%dmV A1:%dmV A2:%dmV A3:%dmV"%(adc0['r'],adc1['r'],adc2['r'],adc3['r']))
-    # print("Total voltage drop at output is "+str(adc2['r']*1E-3-adc0['r']*1E-3))
-    # print("Total voltage drop across CCS is "+str(adc3['r']*1E-3-adc2['r']*1E-3))
-    print("voltage is "+str((adc0['r']-adc3['r'])/1E3))#+" V giving current "+str((adc2['r']-adc1['r'])/R1)+" mA")
-    print("temp is "+str((adc0['r']-adc3['r'])/10))#+" V giving current "+str((adc1['r']-adc0['r'])/R2)+" mA")
+    print("voltage is "+str((adc0['r']-adc3['r'])/1E3))
 
 GPIO.setmode(GPIO.BCM)
 
